@@ -133,26 +133,40 @@
 #pragma mark - ALAdvertiseHelper
 
 @implementation ALAdvertiseHelper
+{
+    ALInterstitialAd* _interstitialAd;
+    ALIncentivizedInterstitialAd* _incentivizedInterstitialAd;
+}
 
 SINGLETON_DEFINITION(ALAdvertiseHelper)
 
 - (void)preloadVideoAd {
-    [[ALIncentivizedInterstitialAd shared] preloadAndNotify:_videoDelegate];
+    [_incentivizedInterstitialAd preloadAndNotify:_videoDelegate];
 }
 
 #pragma mark - AdvertiseDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@ : %@", AppLovin_Name, [ALSdk version]);
-    [ALSdk initializeSdk];
+    
     SpotDelegate* spotDelegate = [[SpotDelegate alloc] init];
     spotDelegate.helper = self;
     VideoDelegate* videoDelegate = [[VideoDelegate alloc] init];
     videoDelegate.helper = self;
     [self setSpotDelegate:spotDelegate];
     [self setVideoDelegate:videoDelegate];
-    [ALInterstitialAd shared].adLoadDelegate = _spotDelegate;
-    [ALInterstitialAd shared].adDisplayDelegate = _spotDelegate;
+    
+    NSString* appLovinKey = [[IOSSystemUtil getInstance] getConfigValueWithKey:AppLovin_Key];
+    ALSdk* sdk = [ALSdk sharedWithKey:appLovinKey];
+
+    _interstitialAd = [[ALInterstitialAd alloc] initWithSdk:sdk];
+    _incentivizedInterstitialAd = [[ALIncentivizedInterstitialAd alloc] initWithSdk:sdk];
+    
+    _interstitialAd.adLoadDelegate = _spotDelegate;
+    _interstitialAd.adDisplayDelegate = _spotDelegate;
+    _incentivizedInterstitialAd.adDisplayDelegate = _videoDelegate;
+    _incentivizedInterstitialAd.adVideoPlaybackDelegate = _videoDelegate;
+    
     [self preloadVideoAd];
     return YES;
 }
@@ -166,25 +180,23 @@ SINGLETON_DEFINITION(ALAdvertiseHelper)
 }
 
 - (BOOL)showSpotAd:(void (^)(BOOL))func {
-    if([[ALInterstitialAd shared] isReadyForDisplay]){
+    if([_interstitialAd isReadyForDisplay]){
         _spotDelegate.clickFunc = func;
-        [[ALInterstitialAd shared] show];
+        [_interstitialAd show];
         return YES;
     }
     return NO;
 }
 
 - (BOOL)isVedioAdReady {
-    return [ALIncentivizedInterstitialAd isReadyForDisplay];
+    return [_incentivizedInterstitialAd isReadyForDisplay];
 }
 
 - (BOOL)showVedioAd:(void (^)(BOOL))viewFunc :(void (^)(BOOL))clickFunc {
     if([self isVedioAdReady]){
         _videoDelegate.viewFunc = viewFunc;
         _videoDelegate.clickFunc = clickFunc;
-        [ALIncentivizedInterstitialAd shared].adDisplayDelegate = _videoDelegate;
-        [ALIncentivizedInterstitialAd shared].adVideoPlaybackDelegate = _videoDelegate;
-        [ALIncentivizedInterstitialAd showAndNotify: _videoDelegate];
+        [_incentivizedInterstitialAd showAndNotify: _videoDelegate];
         return YES;
     }
     return NO;

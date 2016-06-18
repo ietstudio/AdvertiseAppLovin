@@ -2,13 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IETConfigs</key>
+	<dict>
+		<key>AppLovin_Key</key>
+		<string>Vy9rM9tGs9_xLi8FkTZrcP4s7pmxN2yu_6kMGac7kc24JBK1kutLHxBOlyJ6_G_-NkLeIym1Tp6t-QuhIl1agD</string>
+	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>AppLovinSdkKey</key>
-	<string>Vy9rM9tGs9_xLi8FkTZrcP4s7pmxN2yu_6kMGac7kc24JBK1kutLHxBOlyJ6_G_-NkLeIym1Tp6t-QuhIl1agD</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

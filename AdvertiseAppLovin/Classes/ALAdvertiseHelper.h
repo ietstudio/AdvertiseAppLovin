@@ -11,6 +11,7 @@
 #import "AdvertiseDelegate.h"
 
 #define AppLovin_Name @"AppLovin"
+#define AppLovin_Key  @"AppLovin_Key"
 
 @interface ALAdvertiseHelper : NSObject <AdvertiseDelegate>
 
