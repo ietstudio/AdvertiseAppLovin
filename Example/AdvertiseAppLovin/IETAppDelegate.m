@@ -7,12 +7,13 @@
 //
 
 #import "IETAppDelegate.h"
+#import "ALAdvertiseHelper.h"
 
 @implementation IETAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[ALAdvertiseHelper getInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 

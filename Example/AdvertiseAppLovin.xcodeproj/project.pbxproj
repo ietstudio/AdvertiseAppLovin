@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3CE73BE0E8E547B4C4DB3F65 /* Pods_AdvertiseAppLovin_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD46B7A05480E3BDFD047A8 /* Pods_AdvertiseAppLovin_Tests.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -22,7 +21,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		FFC569854D480D4107550873 /* Pods_AdvertiseAppLovin_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47FACB573DED594F28466AB /* Pods_AdvertiseAppLovin_Example.framework */; };
+		95BCAFFDFDB074EBEE4ED69C /* libPods-AdvertiseAppLovin_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DAC1500E41AC6359324DECF /* libPods-AdvertiseAppLovin_Tests.a */; };
+		E4F01C41B2B063C47BE815B2 /* libPods-AdvertiseAppLovin_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 333B446EC529449A58353419 /* libPods-AdvertiseAppLovin_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,11 +37,12 @@
 
 /* Begin PBXFileReference section */
 		05E1F9956CBF248E1826A883 /* Pods-AdvertiseAppLovin_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvertiseAppLovin_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AdvertiseAppLovin_Example/Pods-AdvertiseAppLovin_Example.release.xcconfig"; sourceTree = "<group>"; };
-		3BD46B7A05480E3BDFD047A8 /* Pods_AdvertiseAppLovin_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdvertiseAppLovin_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		333B446EC529449A58353419 /* libPods-AdvertiseAppLovin_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdvertiseAppLovin_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4575B06F9D23F6C7FFB76E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		3EE7E453DEC4EDFE0CB9670F /* Pods-AdvertiseAppLovin_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvertiseAppLovin_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AdvertiseAppLovin_Tests/Pods-AdvertiseAppLovin_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4843307BC0093E27AF66DEF7 /* AdvertiseAppLovin.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AdvertiseAppLovin.podspec; path = ../AdvertiseAppLovin.podspec; sourceTree = "<group>"; };
 		4B48BF09BC21F13D27054640 /* Pods-AdvertiseAppLovin_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvertiseAppLovin_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AdvertiseAppLovin_Example/Pods-AdvertiseAppLovin_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4DAC1500E41AC6359324DECF /* libPods-AdvertiseAppLovin_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdvertiseAppLovin_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* AdvertiseAppLovin_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdvertiseAppLovin_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -64,7 +65,6 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D6525CA212EB787E06833824 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D9A0546CD91838C980A55639 /* Pods-AdvertiseAppLovin_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdvertiseAppLovin_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AdvertiseAppLovin_Tests/Pods-AdvertiseAppLovin_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		E47FACB573DED594F28466AB /* Pods_AdvertiseAppLovin_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AdvertiseAppLovin_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				FFC569854D480D4107550873 /* Pods_AdvertiseAppLovin_Example.framework in Frameworks */,
+				E4F01C41B2B063C47BE815B2 /* libPods-AdvertiseAppLovin_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				3CE73BE0E8E547B4C4DB3F65 /* Pods_AdvertiseAppLovin_Tests.framework in Frameworks */,
+				95BCAFFDFDB074EBEE4ED69C /* libPods-AdvertiseAppLovin_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				E47FACB573DED594F28466AB /* Pods_AdvertiseAppLovin_Example.framework */,
-				3BD46B7A05480E3BDFD047A8 /* Pods_AdvertiseAppLovin_Tests.framework */,
+				333B446EC529449A58353419 /* libPods-AdvertiseAppLovin_Example.a */,
+				4DAC1500E41AC6359324DECF /* libPods-AdvertiseAppLovin_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -516,6 +516,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AdvertiseAppLovin/AdvertiseAppLovin-Prefix.pch";
 				INFOPLIST_FILE = "AdvertiseAppLovin/AdvertiseAppLovin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -532,6 +533,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AdvertiseAppLovin/AdvertiseAppLovin-Prefix.pch";
 				INFOPLIST_FILE = "AdvertiseAppLovin/AdvertiseAppLovin-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
