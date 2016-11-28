@@ -5,7 +5,9 @@
 	<key>IETConfigs</key>
 	<dict>
 		<key>AppLovin_Key</key>
-		<string>Vy9rM9tGs9_xLi8FkTZrcP4s7pmxN2yu_6kMGac7kc24JBK1kutLHxBOlyJ6_G_-NkLeIym1Tp6t-QuhIl1agD</string>
+		<string>X0cFZaB2qziKaie5w_QK5gPsSOgGsv3NvgdTFpW4nDPLx3Rr2s98XZ--yeFpXJBR_pwFcQKNekkZo9Or0TzT6y</string>
+		<key>AppLovin_Placement</key>
+		<string>reward_video</string>
 	</dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>

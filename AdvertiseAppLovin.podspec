@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AdvertiseAppLovin'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'AdvertiseAppLovin'
   s.description      = <<-DESC
 AdvertiseAppLovin.
@@ -21,8 +21,9 @@ AdvertiseAppLovin.
 
   s.ios.deployment_target = '7.0'
 
+  s.source_files = 'AdvertiseAppLovin/Classes/**/*'
+
   s.dependency 'GamePluginBase'
-  s.frameworks = 'AdSupport', 'AVFoundation', 'CoreTelephony', 'CoreGraphics', 'CoreMedia', 'StoreKit', 'SystemConfiguration', 'UIKit'
-  s.vendored_libraries = 'AdvertiseAppLovin/SDK/applovin-ios-sdk-3.3.1/libAppLovinSdk.a'
-  s.source_files = 'AdvertiseAppLovin/Classes/**/*', 'AdvertiseAppLovin/SDK/applovin-ios-sdk-3.3.1/headers/*.h'
+  s.dependency 'AppLovin-SDK'
+
 end

@@ -12,6 +12,7 @@
 
 #define AppLovin_Name @"AppLovin"
 #define AppLovin_Key  @"AppLovin_Key"
+#define AppLovin_Placement @"AppLovin_Placement"
 
 @interface ALAdvertiseHelper : NSObject <AdvertiseDelegate>
 

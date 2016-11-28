@@ -8,9 +8,7 @@
 
 #import "ALAdvertiseHelper.h"
 #import "IOSSystemUtil.h"
-#import "ALSdk.h"
-#import "ALInterstitialAd.h"
-#import "ALIncentivizedInterstitialAd.h"
+#import <AppLovinSDK/AppLovinSDK.h>
 
 @interface SpotDelegate : NSObject <ALAdLoadDelegate, ALAdDisplayDelegate>
 @property (nonatomic, retain) ALAdvertiseHelper* helper;
@@ -63,6 +61,8 @@
 
 @end
 
+#pragma mark - VideoDelegate
+
 @implementation VideoDelegate
 {
     BOOL _viewed;
@@ -75,7 +75,10 @@
 
 -(void)adService:(ALAdService *)adService didFailToLoadAdWithError:(int)code {
     NSLog(@"video adService %@ didFailToLoadAdWithError: %d", adService, code);
-    [_helper preloadVideoAd];
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, ADVERTISE_RETRY_INTERVAL*NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [_helper preloadVideoAd];
+    });
 }
 
 -(void) ad:(ALAd *) ad wasDisplayedIn: (UIView *)view {
@@ -134,6 +137,7 @@
 
 @implementation ALAdvertiseHelper
 {
+    NSString* _videoPlacement;
     ALInterstitialAd* _interstitialAd;
     ALIncentivizedInterstitialAd* _incentivizedInterstitialAd;
 }
@@ -141,47 +145,27 @@
 SINGLETON_DEFINITION(ALAdvertiseHelper)
 
 - (void)preloadVideoAd {
-    [_incentivizedInterstitialAd preloadAndNotify:_videoDelegate];
+    [_incentivizedInterstitialAd preloadAndNotify:self.videoDelegate];
 }
 
 #pragma mark - AdvertiseDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"%@ : %@", AppLovin_Name, [ALSdk version]);
-    
-    SpotDelegate* spotDelegate = [[SpotDelegate alloc] init];
-    spotDelegate.helper = self;
-    VideoDelegate* videoDelegate = [[VideoDelegate alloc] init];
-    videoDelegate.helper = self;
-    [self setSpotDelegate:spotDelegate];
-    [self setVideoDelegate:videoDelegate];
-    
-    NSString* appLovinKey = [[IOSSystemUtil getInstance] getConfigValueWithKey:AppLovin_Key];
-    ALSdk* sdk = [ALSdk sharedWithKey:appLovinKey];
-
-    _interstitialAd = [[ALInterstitialAd alloc] initWithSdk:sdk];
-    _incentivizedInterstitialAd = [[ALIncentivizedInterstitialAd alloc] initWithSdk:sdk];
-    
-    _interstitialAd.adLoadDelegate = _spotDelegate;
-    _interstitialAd.adDisplayDelegate = _spotDelegate;
-    _incentivizedInterstitialAd.adDisplayDelegate = _videoDelegate;
-    _incentivizedInterstitialAd.adVideoPlaybackDelegate = _videoDelegate;
-    
-    [self preloadVideoAd];
-    return YES;
-}
-
 - (int)showBannerAd:(BOOL)portrait :(BOOL)bottom {
-    return NO;
+    NSLog(@"didn't support");
+    return 0;
 }
 
 - (void)hideBannerAd {
-    
+    NSLog(@"didn't support");
+}
+
+- (BOOL)isSpotAdReady {
+    return [_interstitialAd isReadyForDisplay];
 }
 
 - (BOOL)showSpotAd:(void (^)(BOOL))func {
-    if([_interstitialAd isReadyForDisplay]){
-        _spotDelegate.clickFunc = func;
+    if([self isSpotAdReady]){
+        self.spotDelegate.clickFunc = func;
         [_interstitialAd show];
         return YES;
     }
@@ -194,9 +178,11 @@ SINGLETON_DEFINITION(ALAdvertiseHelper)
 
 - (BOOL)showVedioAd:(void (^)(BOOL))viewFunc :(void (^)(BOOL))clickFunc {
     if([self isVedioAdReady]){
-        _videoDelegate.viewFunc = viewFunc;
-        _videoDelegate.clickFunc = clickFunc;
-        [_incentivizedInterstitialAd showAndNotify: _videoDelegate];
+        self.videoDelegate.viewFunc = viewFunc;
+        self.videoDelegate.clickFunc = clickFunc;
+        [_incentivizedInterstitialAd showOver:[UIApplication sharedApplication].delegate.window
+                                    placement:_videoPlacement
+                                    andNotify:self.videoDelegate];
         return YES;
     }
     return NO;
@@ -204,6 +190,32 @@ SINGLETON_DEFINITION(ALAdvertiseHelper)
 
 - (NSString *)getName {
     return AppLovin_Name;
+}
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSLog(@"%@ : %@", AppLovin_Name, [ALSdk version]);
+    
+    NSString* appLovinKey = [[IOSSystemUtil getInstance] getConfigValueWithKey:AppLovin_Key];
+    _videoPlacement = [[IOSSystemUtil getInstance] getConfigValueWithKey:AppLovin_Placement];
+    
+    ALSdk* sdk = [ALSdk sharedWithKey:appLovinKey];
+    
+    self.spotDelegate = [[SpotDelegate alloc] init];
+    self.spotDelegate.helper = self;
+    self.videoDelegate = [[VideoDelegate alloc] init];
+    self.videoDelegate.helper = self;
+
+    _interstitialAd = [[ALInterstitialAd alloc] initWithSdk:sdk];
+    _interstitialAd.adLoadDelegate = self.spotDelegate;
+    _interstitialAd.adDisplayDelegate = self.spotDelegate;
+
+    _incentivizedInterstitialAd = [[ALIncentivizedInterstitialAd alloc] initWithSdk:sdk];
+    _incentivizedInterstitialAd.adDisplayDelegate = self.videoDelegate;
+    _incentivizedInterstitialAd.adVideoPlaybackDelegate = self.videoDelegate;
+    
+    [self preloadVideoAd];
+    
+    return YES;
 }
 
 @end
