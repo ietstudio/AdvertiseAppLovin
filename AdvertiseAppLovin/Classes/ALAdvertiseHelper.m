@@ -12,13 +12,13 @@
 
 @interface SpotDelegate : NSObject <ALAdLoadDelegate, ALAdDisplayDelegate>
 @property (nonatomic, retain) ALAdvertiseHelper* helper;
-@property (nonatomic, retain) void(^clickFunc)(BOOL);
+@property (nonatomic, assign) void(^clickFunc)(BOOL);
 @end
 
 @interface VideoDelegate : NSObject <ALAdLoadDelegate, ALAdDisplayDelegate, ALAdVideoPlaybackDelegate, ALAdRewardDelegate>
 @property (nonatomic, retain) ALAdvertiseHelper* helper;
-@property (nonatomic, retain) void(^viewFunc)(BOOL);
-@property (nonatomic, retain) void(^clickFunc)(BOOL);
+@property (nonatomic, assign) void(^viewFunc)(BOOL);
+@property (nonatomic, assign) void(^clickFunc)(BOOL);
 @end
 
 @interface ALAdvertiseHelper()
