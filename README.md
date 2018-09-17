@@ -22,7 +22,7 @@ pod "AdvertiseAppLovin"
 
 ## Author
 
-gaoyang, gaoyang@joycastle.mobi
+gaoyang
 
 ## License
 
